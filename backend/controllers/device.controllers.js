@@ -44,7 +44,7 @@ export const deviceOnline = async(req, res) =>{
         }else{
             const device=result[0];
 
-            device.isOnline = true;
+            device.isonline = true;
             const updatedDevice = await Device.findByIdAndUpdate(device._id, device, {new: true});
             res.status(200).json({success: true, data: [updatedDevice]});
         }
