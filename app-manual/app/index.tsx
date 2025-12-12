@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
+import axiosInstance from '../axiosConfig.js';
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('screen').width;
 
 // Alert Banner Component
 function AlertBanner() {
@@ -209,6 +210,10 @@ function NotificationsPanel() {
 
 // Main App Component
 export default function App() {
+
+  const [data, setData] = useState();
+  
+
   return (
     <View className="flex-1 bg-neutral-100 w-full">
       <AlertBanner />
