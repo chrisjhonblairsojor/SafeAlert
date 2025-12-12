@@ -3,7 +3,7 @@ import { dbConnection } from './config/db_access.js';
 import { config as dotenvConfig } from 'dotenv';
 import fs from 'fs';
 import deviceRouter from './routers/device.router.js';
-
+import checkOfflineDevices from './functions/checkOfflineDevices.js';
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
@@ -19,7 +19,7 @@ app.use("/device", deviceRouter);
 app.get("/", (req, res) =>{
     res.json({message: "SERVER is working!"})
 });
-
+setInterval(checkOfflineDevices, 30000);
 app.listen(PORT, ()=>{
     dbConnection();
     console.log("Server started at http://localhost:"+PORT);

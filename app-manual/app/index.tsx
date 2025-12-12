@@ -9,55 +9,13 @@ const screenWidth = Dimensions.get('window').width;
 // Alert Banner Component
 function AlertBanner() {
   return (
-    <View className="bg-red-500 px-6 py-4 flex-row items-center justify-between">
-      <View className="flex-row items-center gap-3">
+    <View className="flex flex-row w-100 pr-4 bg-red-500 px-6 py-4 flex-row items-center justify-between">
+      <View className="flex-row items-center gap-1">
         <Ionicons name="warning" size={24} color="white" />
         <Text className="text-white font-semibold">SafeAlert</Text>
-        <Text className="text-white ml-6">
-          <Text className="font-semibold">FLOOD ALERT:</Text> Water level rising rapidly in Barangay San Isidro
-        </Text>
-      </View>
-    </View>
-  );
-}
-
-// Sidebar Component
-function Sidebar() {
-  const menuItems = [
-    { icon: 'grid', library: 'Ionicons', label: 'Dashboard', active: true },
-    { icon: 'phone-portrait', library: 'Ionicons', label: 'Devices', active: false },
-    { icon: 'warning', library: 'Ionicons', label: 'Alerts', active: false },
-    { icon: 'chatbubble', library: 'Ionicons', label: 'Responses', active: false },
-    { icon: 'mail', library: 'Ionicons', label: 'Messages', active: false },
-    { icon: 'document-text', library: 'Ionicons', label: 'Reports', active: false },
-    { icon: 'people', library: 'Ionicons', label: 'Community Info', active: false },
-    { icon: 'settings', library: 'Ionicons', label: 'Settings', active: false },
-  ];
-
-  return (
-    <View className="w-64 bg-white border-r border-neutral-200 p-4">
-      <View className="space-y-1">
-        {menuItems.map((item) => (
-          <TouchableOpacity
-            key={item.label}
-            className={`w-full flex-row items-center gap-3 px-4 py-2.5 rounded-lg ${
-              item.active ? 'bg-neutral-100' : ''
-            }`}
-          >
-            <Ionicons 
-              name={item.icon as any} 
-              size={20} 
-              color={item.active ? '#171717' : '#525252'} 
-            />
-            <Text className={item.active ? 'text-neutral-900' : 'text-neutral-600'}>
-              {item.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
-        <TouchableOpacity className="w-full flex-row items-center gap-3 px-4 py-2.5 rounded-lg mt-4">
-          <Ionicons name="log-out" size={20} color="#525252" />
-          <Text className="text-neutral-600">Logout</Text>
-        </TouchableOpacity>
+        <View className=" ml-6 flex flex-col-2">
+          <Text className="text-white font-semibold text-sm">FLOOD ALERT: Water level rising</Text><Text className="text-white xfont-semibold text-sm"> rapidly in Barangay 3</Text>
+        </View>
       </View>
     </View>
   );
@@ -212,10 +170,10 @@ function NotificationsPanel() {
           </View>
         </View>
 
-        <View className="h-35">
+        <View className="h-48">
           <LineChart
             data={chartData}
-            width={screenWidth * 0.35}
+            width={screenWidth-40}
             height={192}
             chartConfig={{
               backgroundColor: '#ffffff',
@@ -252,12 +210,14 @@ function NotificationsPanel() {
 // Main App Component
 export default function App() {
   return (
-    <View className="flex-1 bg-neutral-100">
+    <View className="flex-1 bg-neutral-100 w-full">
       <AlertBanner />
-      <View className="flex-row flex-1">
+      <View className="flex-row flex-1 mx-auto w-full ml-[-30] mb-10">
         <DashboardContent />
-        <NotificationsPanel />
+        <NotificationsPanel /> 
       </View>
     </View>
   );
 }
+
+
