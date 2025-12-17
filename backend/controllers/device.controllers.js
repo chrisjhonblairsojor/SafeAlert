@@ -50,7 +50,7 @@ export const deviceOnline = async(req, res) =>{
             const device=result[0];
             device.isonline = true;
             device.lastUpdate = Date.now();
-            device.rainFallIntensity=rainFallIntensity;
+            device.rainfallIntensity=rainfallIntensity;
             device.floodLevel= floodLevel;
             device.isRaining = isRaining;
 
