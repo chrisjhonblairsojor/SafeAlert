@@ -92,6 +92,9 @@ const func=async()=>{
   }
 
   func();
+  const intervalId = setInterval(func, 20000); // Reload every 10 seconds
+
+  return () => clearInterval(intervalId);
 },[]);
 
   return (
