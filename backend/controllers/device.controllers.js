@@ -39,7 +39,7 @@ export const updateDevice = async(req, res)=>{}
 export const deviceOnline = async(req, res) =>{
     const deviceID =  req.body.deviceID;
     const isRaining = req.body.isRaining;
-    const rainFallIntensity = req.body.rainFallIntensity;
+    const rainfallIntensity = req.body.rainfallIntensity;
     const floodLevel = req.body.floodLevel;
     
     try{
