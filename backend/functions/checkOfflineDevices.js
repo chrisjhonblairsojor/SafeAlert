@@ -3,7 +3,7 @@ import Device from '../models/device.model.js';
 
 const checkOfflineDevices = async() => {
     try{
-        const devices = await Device.find({});
+        const devices = await Device.find({"isOnline": true});
         if(!devices instanceof Array || devices.length === 0){
             return;
         }
@@ -15,10 +15,7 @@ const checkOfflineDevices = async() => {
             const device = devices[i];
             try{
                 if(timeNow >= (device.lastUpdate+idleTimeThreshold)){
-                    device.isonline=false;
-                    device.floodLevel = 0;
-                    device.rainfallIntensity=0;
-                    device.isRaining=false;
+                    device.isOnline=false;
                     await Device.findByIdAndUpdate(device._id, device, {new: true});
                 }
             }catch(e){
@@ -31,4 +28,4 @@ const checkOfflineDevices = async() => {
     }
 }
 
-export default checkOfflineDevices;
+export default checkOfflineDevices
