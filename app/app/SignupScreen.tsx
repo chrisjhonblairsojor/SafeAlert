@@ -195,10 +195,10 @@ export default function SignupScreen() {
           
           <View className="my-8">
             <Text className="text-3xl font-bold text-center text-gray-800">
-              Create Account
+              Signup
             </Text>
             <Text className="text-center text-gray-500 mt-2">
-              Rain2Cane: Smart Water Collection and Irrigation System
+              Safealert: A Smart IoT based Early Warning and Emergency Response System for Hazard Preparedness and Disaster Resilience
             </Text>
           </View>
           <View className="my-8 gap-3">

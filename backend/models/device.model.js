@@ -36,6 +36,31 @@ const DeviceSchema = new mongoose.Schema({
         required:true,
         default:0
     },
+    windSpeed:{
+        type: Number,
+        required: true,
+        default: 0
+    },
+    windLevel:{
+        type: Number,
+        required: true,
+        default: 0
+    },
+    waveHeight:{
+        type: Number,
+        required: true,
+        default: 0
+    },
+    humidity:{
+        type: Number,
+        required: true,
+        default: 0
+    },
+    temperature:{
+        type: Number,
+        required: true,
+        default: 0
+    },
     location:{
         type: String,
         default: ""

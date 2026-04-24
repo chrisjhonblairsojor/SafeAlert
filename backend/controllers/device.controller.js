@@ -149,16 +149,18 @@ export const deviceOnline = async(req, res) =>{
         return res.status(400).json({success: false, message: "Invalid values!"});
     }
 
+    console.log("body: "+JSON.stringify(req.body));
+
     const deviceID =  req.body.deviceID;
     var temperature= req.body.temperature;
     var humidity=req.body.humidity;
-    var reservoirLevel=req.body.reservoirLevel;
-    var soilMoisture1=req.body.soilMoisture1;
-    var soilMoisture2=req.body.soilMoisture2;
-    var soilMoisture3=req.body.soilMoisture3;
-    const waterLevel1=req.body.waterLevel1;
-    const waterLevel2=req.body.waterLevel2;
-    const waterLevel3=req.body.waterLevel3;
+    var rainfallIntensity=req.body.rainfallIntensity;
+    var floodLevel=req.body.floodLevel;
+    const isRaining=req.body.isRaining;
+    const windLevel=req.body.windLevel;
+    const windSpeed=req.body.windSpeed;
+    const waveHeight=req.body.waveHeight;
+
     
     if(!deviceID){
         return res.status(200).json({success: false, message: "Invalid Device ID!"});
@@ -172,21 +174,7 @@ export const deviceOnline = async(req, res) =>{
         humidity=0;
     }
 
-    if(!reservoirLevel){
-        reservoirLevel='LOW';
-    }
-
-    if(typeof soilMoisture1 !== "boolean"){
-        soilMoisture1=false;
-    }
-
-    if(typeof soilMoisture2 !== "boolean"){
-        soilMoisture2=false;
-    }
-
-    if(typeof soilMoisture3 !== "boolean"){
-        soilMoisture3=false;
-    }
+    
 
     const session = await mongoose.startSession();
     try{
@@ -197,17 +185,16 @@ export const deviceOnline = async(req, res) =>{
             session.startTransaction();
 
             const device=result[0];
-            device.isOnline = true;
+            device.isonline = true;
             device.lastUpdate=Date.now();
             device.temperature=temperature;
             device.humidity=humidity;
-            device.reservoirLevel=reservoirLevel;
-            device.soilMoisture1=soilMoisture1;
-            device.soilMoisture2=soilMoisture2;
-            device.soilMoisture3=soilMoisture3;
-            device.waterLevel1=waterLevel1;
-            device.waterLevel2=waterLevel2;
-            device.waterLevel3=waterLevel3;
+            device.rainfallIntensity=rainfallIntensity;
+            device.isRaining=isRaining;
+            device.floodLevel=floodLevel;
+            device.windSpeed=windSpeed;
+            device.windLevel=windLevel;
+            device.waveHeight=waveHeight;
 
             const updatedDevice = await Device.findByIdAndUpdate(device._id, device, {runValidators: true, new: true, session});
             await session.commitTransaction();
